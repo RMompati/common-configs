@@ -11,9 +11,9 @@ import lombok.Data;
 @Data
 @Builder
 public class SMTPEmailInfo {
-  private final String subject;
-  private final String recipient;
-  private final String[] recipients;
-  private final String body;
-  private final Boolean html;
+  private String subject;
+  private String recipient;
+  private String[] recipients;
+  private String body;
+  private Boolean html = false;
 }
