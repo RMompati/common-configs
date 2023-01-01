@@ -1,5 +1,6 @@
 package com.eroldmr.common.configs.smtp;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /** Creates a simple method to send an email, the class can be initialized in your EmailService class
@@ -10,9 +11,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface SMTPEmailService {
+  @Async
   void sendEmail(SMTPEmailInfo smtpEmailInfo);
+  @Async
   void sendEmail(String recipient, String subject, String body);
+  @Async
   void sendEmail(String[] recipients, String subject, String body);
+  @Async
   void sendEmail(String recipient, String subject, String body, boolean html);
+  @Async
   void sendEmail(String[] recipients, String subject, String body, boolean html);
 }
