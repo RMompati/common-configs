@@ -10,6 +10,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,6 +24,7 @@ public class SMTPEmailServiceImpl implements SMTPEmailService {
   private final JavaMailSender mailSender;
   private final SMTPEmailCredentials smtpEmailCredentials;
 
+  @Async
   public void sendEmail(SMTPEmailInfo smtpEmailInfo) {
     MimeMessagePreparator preparator = mimeMessage -> {
       MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
@@ -48,6 +50,7 @@ public class SMTPEmailServiceImpl implements SMTPEmailService {
     }
   }
 
+  @Async
   public void sendEmail(String recipient, String subject, String body) {
     sendEmail(
         SMTPEmailInfo
@@ -59,6 +62,7 @@ public class SMTPEmailServiceImpl implements SMTPEmailService {
             .build()
     );
   }
+  @Async
   public void sendEmail(String[] recipients, String subject, String body) {
     sendEmail(
         SMTPEmailInfo
@@ -71,6 +75,7 @@ public class SMTPEmailServiceImpl implements SMTPEmailService {
     );
   }
 
+  @Async
   public void sendEmail(String recipient, String subject, String body, boolean html) {
     sendEmail(
         SMTPEmailInfo
@@ -82,6 +87,7 @@ public class SMTPEmailServiceImpl implements SMTPEmailService {
             .build()
     );
   }
+  @Async
   public void sendEmail(String[] recipients, String subject, String body, boolean html) {
     sendEmail(
         SMTPEmailInfo
